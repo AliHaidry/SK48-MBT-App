@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authy-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authy 
+  template:
+    metadata:
+      labels:
+        app: authy
+    spec:
+      containers:
+        - name: authy
+          image: 200401073/authy
