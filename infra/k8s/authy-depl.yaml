@@ -15,3 +15,16 @@ spec:
       containers:
         - name: authy
           image: 200401073/authy
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: authy-srv 
+spec:
+  selector:
+    app: authy
+  ports:
+    - name: authy
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
