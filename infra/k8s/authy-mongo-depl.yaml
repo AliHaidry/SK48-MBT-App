@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authy-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authy-mongo
+  template:
+    metadata:
+      labels:
+        app: authy-mongo
+    spec:
+      containers:
+        - name: authy-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authy-mongo-srv
+spec:
+  selector:
+    app: authy-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017    
