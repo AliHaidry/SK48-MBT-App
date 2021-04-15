@@ -16,6 +16,8 @@ spec:
         - name: authy
           image: 200401073/authy
           env:
+            - name: MONGO_URI
+              value: 'mongodb://authy-mongo-srv:27017/authy'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
