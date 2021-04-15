@@ -2,8 +2,8 @@ import express from "express";
 import "express-async-errors";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
-
-import { errorHandler, NotFoundError } from "@ahtickcon/common";
+import { errorHandler, NotFoundError, currentUser } from "@ahtickcon/common";
+import { createTicketRouter } from "./routes/new";
 
 
 
@@ -17,7 +17,11 @@ app.use(
   }) 
 );
 
+app.use(currentUser);
+
 /** Routes Setup */
+app.use(createTicketRouter);
+
 
 
 app.all("*", async (req, res) => {
