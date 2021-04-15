@@ -4,6 +4,7 @@ import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError, currentUser } from "@ahtickcon/common";
 import { createTicketRouter } from "./routes/new";
+import { showTicketRouter } from "./routes/show";
 
 
 
@@ -21,7 +22,7 @@ app.use(currentUser);
 
 /** Routes Setup */
 app.use(createTicketRouter);
-
+app.use(showTicketRouter);
 
 
 app.all("*", async (req, res) => {
