@@ -5,7 +5,7 @@ import cookieSession from "cookie-session";
 import { errorHandler, NotFoundError, currentUser } from "@ahtickcon/common";
 import { createTicketRouter } from "./routes/new";
 import { showTicketRouter } from "./routes/show";
-
+import { indexTicketRouter } from "./routes/index";
 
 
 const app = express();
@@ -23,6 +23,7 @@ app.use(currentUser);
 /** Routes Setup */
 app.use(createTicketRouter);
 app.use(showTicketRouter);
+app.use(indexTicketRouter);
 
 
 app.all("*", async (req, res) => {
