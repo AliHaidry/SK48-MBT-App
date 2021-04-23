@@ -20,6 +20,8 @@ router.delete('/api/orders/:orderId',requireAuth, async (req: Request, res: Resp
     order.status = OrderStatus.Cancelled;
     await order.save();
 
+    // Publishing an event saying this was cancelled!
+
     res.status(204).send(order);
 }); 
 
