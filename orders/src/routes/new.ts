@@ -58,6 +58,8 @@ router.post(
     await order.save();
 
     // Publish an event saying that an order was created
+    // Did intentionally to fx the error
+    //@ts-ignore
     new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order.id,
       status: order.status,
