@@ -29,7 +29,9 @@ router.delete(
     order.status = OrderStatus.Cancelled;
     await order.save();
 
-    // Publishing an event saying this was cancelled!
+    // publishing an event saying this was cancelled!
+    // Did intentionally to fx the error
+    //@ts-ignore
     new OrderCancelledPublisher(natsWrapper.client).publish({
       id: order.id,
       ticket: {
