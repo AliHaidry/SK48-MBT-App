@@ -31,9 +31,10 @@ router.delete(
 
     // publishing an event saying this was cancelled!
     // Did intentionally to fx the error
-    //@ts-ignore
+    
     new OrderCancelledPublisher(natsWrapper.client).publish({
       id: order.id,
+      version: order.version,
       ticket: {
         id: order.ticket.id,
       },
