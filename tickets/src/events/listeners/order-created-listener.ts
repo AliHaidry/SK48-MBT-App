@@ -3,7 +3,6 @@ import { Listener, OrderCreatedEvent, Subjects } from '@ahtickcon/common';
 import { queueGroupName } from './queue-group-name';
 import { Ticket } from '../../models/ticket';
 import { TicketUpdatedPublisher } from '../publishers/ticket-updated-publisher';
-import { natsWrapper } from '../../nats-wrapper';
 
 export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
     subject: Subjects.OrderCreated = Subjects.OrderCreated;
@@ -21,7 +20,14 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
         ticket.set({orderId: data.id});
         // Save the ticket
         await ticket.save();
-        new TicketUpdatedPublisher(natsWrapper.client);
+        await new TicketUpdatedPublisher(this.client).publish({
+            id: ticket.id,
+            price: ticket.price,
+            title: ticket.title,
+            userId: ticket.userId,
+            orderId: ticket.orderId,
+            version: ticket.version
+        });
 
         // ack the message
         msg.ack();
