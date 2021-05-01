@@ -47,4 +47,12 @@ build:
       sync:
         manual:
           - src: 'src/**/*.ts'
-            dest: .        
+            dest: .    
+    - image: 200401073/payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .      
