@@ -30,7 +30,7 @@ router.post(
       const order = await Order.findById(orderId);
 
       if(!order) {
-        throw new Error('Order not found');
+        throw new NotFoundError();
       }
       if(order.userId !== req.currentUser!.id){
         throw new NotAuthorizedError();
