@@ -1,7 +1,9 @@
 name: tests-authy
 
 on: 
-  pull_request
+  pull_request:
+    paths:
+      - 'authy/**'
   
 jobs: 
   build:
