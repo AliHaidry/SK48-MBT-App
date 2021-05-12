@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { app } from "./app";
 /** setting up db */
 const start = async () => {
-  console.log('Starting up the authy service!!!...:)');
+  console.log('Starting up the authy service!!!');
   if(!process.env.JWT_KEY){
     throw new Error("JWT_KEY must be defined");
   }
