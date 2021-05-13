@@ -1,0 +1,13 @@
+name: tests-authy
+
+on: 
+  pull_request:
+    paths:
+      - 'authy/**'
+  
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd authy && npm install && npm run test:ci
